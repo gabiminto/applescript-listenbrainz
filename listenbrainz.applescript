@@ -103,12 +103,12 @@ on run {input, parameters}
 	
 	tell application "Music"
 		
-    -- change this to your Library name, for example in French, it is "Bibliothèque"
-    set libraryName = "Library"
-    
-    -- use your own listenbrainzToken here
-    set listenbrainzToken = "........................."
-    
+		-- change this to your Library name, for example in French, it is "Bibliothèque"
+		set libraryName to "Library"
+		
+		-- use your own listenbrainzToken here
+		set listenbrainzToken to "..........."
+		
 		set trackName to name of current track
 		set artistName to artist of current track
 		
@@ -117,7 +117,7 @@ on run {input, parameters}
 			duplicate current track to source libraryName
 		end if
 		
-		set curlcmd to "curl -H \"Authorization: token " & listenbrainzToken & \" -H \"Content-Type: application/json\""
+		set curlcmd to "curl -H \"Authorization: token " & listenbrainzToken & "\" -H \"Content-Type: application/json\""
 		
 		set track_metadata to my createDictWith({{"artist_name", artistName}, {"track_name", trackName}})
 		
@@ -129,7 +129,7 @@ on run {input, parameters}
 		set curlurl to "https://api.listenbrainz.org/1/submit-listens"
 		
 		do shell script curlcmd & " -d " & quoted form of encoded & " " & curlurl
-
+		
 	end tell
 	return input
 end run
